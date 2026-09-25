@@ -10,7 +10,6 @@ Open any .html file directly in a browser and it works.
 lfi-static/
 ├── index.html               Home
 ├── portfolio.html           Filterable project gallery
-├── wedding-invitation.html  Wedding invitation landing page
 ├── services.html            Full service catalogue
 ├── contact.html             Contact form + map
 ├── login.html                No auth — redirects to dashboard.lfiindia.in/login
@@ -39,7 +38,6 @@ then open http://localhost:8000
   still shows if JavaScript is disabled, see `<noscript>` in each page head)
 - Portfolio category filtering
 - Horizontal scroll carousel for testimonials (prev/next buttons)
-- FAQ accordion on the Wedding Invitation page
 - Contact & wedding inquiry forms with frontend-only validation (no backend —
   shows a success panel on valid submit; wire up an endpoint in `js/main.js`
   `setupForm()` when you're ready to actually send data somewhere)

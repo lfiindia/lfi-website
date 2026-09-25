@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Wedding Invitations now live on their own site - send old links there.
+RewriteRule ^wedding-(invitation|demos)(\.html)?/?$ https://weddinginvitation.lfiindia.in/ [R=301,L]
+
 # If someone visits an old-style URL ending in .html, permanently redirect
 # them to the clean version (e.g. /portfolio.html -> /portfolio). This
 # keeps old bookmarks/links working while showing the new clean URL.
