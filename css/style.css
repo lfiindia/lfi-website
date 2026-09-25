@@ -168,6 +168,9 @@ button { font-family: inherit; cursor: pointer; }
 .nav-links a:hover, .nav-links a.active { color: var(--secondary-dark); }
 
 .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
+.nav-cta .btn { white-space: nowrap; }
+/* "Download LFI-PMS App" - shortens to "LFI-PMS App" on narrower desktops so the header never wraps */
+@media (max-width: 1280px) { .btn-app-dl { display: none; } }
 .nav-toggle { display: none; background: none; border: none; color: var(--accent); }
 .nav-toggle svg { width: 26px; height: 26px; }
 
@@ -182,7 +185,9 @@ button { font-family: inherit; cursor: pointer; }
 .mobile-menu.open { max-height: 500px; }
 .mobile-menu ul { list-style: none; margin: 0; padding: 1.5rem 0 0.5rem; }
 .mobile-menu li a { display: block; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-weight: 500; color: var(--accent); }
-.mobile-menu .mobile-cta { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+.mobile-menu .mobile-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+.mobile-menu .mobile-cta .btn { flex: 1 1 40%; }
+.mobile-menu .mobile-cta .btn-app { flex-basis: 100%; order: -1; }
 
 @media (max-width: 1024px) {
   .nav-links, .nav-cta { display: none; }
