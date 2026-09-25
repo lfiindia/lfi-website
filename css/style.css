@@ -170,7 +170,7 @@ button { font-family: inherit; cursor: pointer; }
 .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
 .nav-cta .btn { white-space: nowrap; }
 
-/* PMS App group — "Download LFI-PMS App" (tan orange) joined to "Login" (navy) as one control */
+/* Header action group — "Get Quote" (deep green), "Download LFI-PMS App" (tan orange) and "Login" (navy) joined as one control */
 .app-group {
   display: inline-flex;
   border-radius: 0.6rem;
@@ -184,7 +184,11 @@ button { font-family: inherit; cursor: pointer; }
 .btn-app { background: #b8672b; }
 .btn-app:hover { background: #c47635; }
 .btn-app:active { background: #9c5523; }
-.btn-login { background: var(--primary); border-left: 1px solid rgba(255,255,255,0.18) !important; }
+.app-group .btn + .btn { border-left: 1px solid rgba(255,255,255,0.18); }
+.btn-quote { background: var(--tertiary); }
+.btn-quote:hover { background: var(--tertiary-light); }
+.btn-quote:active { background: var(--tertiary-dark); }
+.btn-login { background: var(--primary); }
 .btn-login:hover { background: var(--primary-light); }
 .btn-login:active { background: var(--primary-dark); }
 /* Shortens to "LFI-PMS App" on narrower desktops so the header never wraps */
@@ -204,7 +208,10 @@ button { font-family: inherit; cursor: pointer; }
 .mobile-menu ul { list-style: none; margin: 0; padding: 1.5rem 0 0.5rem; }
 .mobile-menu li a { display: block; padding: 0.85rem 0; border-bottom: 1px solid var(--border); font-weight: 500; color: var(--accent); }
 .mobile-menu .mobile-cta { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0 1.5rem; }
-.mobile-menu .mobile-cta .app-group { display: flex; width: 100%; }
+.mobile-menu .mobile-cta .app-group { display: flex; flex-wrap: wrap; width: 100%; }
+/* On phones Get Quote takes the top row; Download | Login share the row below */
+.mobile-menu .mobile-cta .app-group .btn-quote { flex: 1 1 100%; border-bottom: 1px solid rgba(255,255,255,0.18); }
+.mobile-menu .mobile-cta .app-group .btn-quote + .btn { border-left: 0; }
 .mobile-menu .mobile-cta .app-group .btn { padding-left: 0.9rem; padding-right: 0.9rem; }
 .mobile-menu .mobile-cta .app-group .btn-app { flex: 1 1 auto; min-width: 0; }
 .mobile-menu .mobile-cta .app-group .btn-login { flex: 0 0 auto; }
