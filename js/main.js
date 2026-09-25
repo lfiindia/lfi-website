@@ -27,7 +27,8 @@
   }
 })();
 
-// Home hero slider - auto-advances, pauses on hover/focus/hidden tab, swipeable
+// Home hero slider - starts auto-advancing as soon as the page opens (every 8s),
+// arrows/dots/swipe jump to a slide and restart the timer; only a hidden tab pauses it
 (function () {
   const slider = document.querySelector(".hero-slider");
   if (!slider) return;
@@ -35,7 +36,7 @@
   const dots = slider.querySelectorAll(".hero-dot");
   if (slides.length < 2) return;
 
-  const INTERVAL = 7000;
+  const INTERVAL = 8000;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   slider.style.setProperty("--hero-interval", INTERVAL + "ms");
   let current = 0;
@@ -77,10 +78,6 @@
     btn.addEventListener("click", () => go(current + Number(btn.dataset.dir)))
   );
 
-  slider.addEventListener("mouseenter", pause);
-  slider.addEventListener("mouseleave", start);
-  slider.addEventListener("focusin", pause);
-  slider.addEventListener("focusout", (e) => { if (!slider.contains(e.relatedTarget)) start(); });
   document.addEventListener("visibilitychange", () => (document.hidden ? pause() : start()));
 
   let touchX = null;

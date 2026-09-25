@@ -275,7 +275,7 @@ button { font-family: inherit; cursor: pointer; }
 .hero-dot span { display: block; width: 2.25rem; height: 3px; border-radius: 999px; background: rgba(255,255,255,0.3); overflow: hidden; position: relative; transition: width 0.4s ease; }
 .hero-dot.is-active span { width: 3.5rem; }
 .hero-dot span::after { content: ""; position: absolute; inset: 0; background: var(--secondary-light); transform: scaleX(0); transform-origin: left; }
-.hero-dot.is-active span::after { animation: heroProgress var(--hero-interval, 7s) linear forwards; }
+.hero-dot.is-active span::after { animation: heroProgress var(--hero-interval, 8s) linear forwards; }
 .hero-slider.is-paused .hero-dot.is-active span::after { animation-play-state: paused; }
 @keyframes heroProgress { to { transform: scaleX(1); } }
 .hero-arrows { display: flex; gap: 0.5rem; }
