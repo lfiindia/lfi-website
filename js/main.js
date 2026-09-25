@@ -27,6 +27,76 @@
   }
 })();
 
+// Home hero slider - auto-advances, pauses on hover/focus/hidden tab, swipeable
+(function () {
+  const slider = document.querySelector(".hero-slider");
+  if (!slider) return;
+  const slides = slider.querySelectorAll(".hero-slide");
+  const dots = slider.querySelectorAll(".hero-dot");
+  if (slides.length < 2) return;
+
+  const INTERVAL = 7000;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  slider.style.setProperty("--hero-interval", INTERVAL + "ms");
+  let current = 0;
+  let timer = null;
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", active ? "false" : "true");
+      slide.inert = !active;
+    });
+    dots.forEach((dot, i) => {
+      const active = i === current;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-selected", active ? "true" : "false");
+      // Restart the progress bar animation on the newly active dot
+      const bar = dot.querySelector("span");
+      if (active && bar) { bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; }
+    });
+  }
+
+  function start() {
+    if (reduceMotion) return;
+    stop();
+    slider.classList.remove("is-paused");
+    timer = setInterval(() => show(current + 1), INTERVAL);
+  }
+  function stop() {
+    clearInterval(timer);
+    timer = null;
+  }
+  function pause() { stop(); slider.classList.add("is-paused"); }
+  function go(index) { show(index); start(); }
+
+  dots.forEach((dot, i) => dot.addEventListener("click", () => go(i)));
+  slider.querySelectorAll(".hero-arrow").forEach((btn) =>
+    btn.addEventListener("click", () => go(current + Number(btn.dataset.dir)))
+  );
+
+  slider.addEventListener("mouseenter", pause);
+  slider.addEventListener("mouseleave", start);
+  slider.addEventListener("focusin", pause);
+  slider.addEventListener("focusout", (e) => { if (!slider.contains(e.relatedTarget)) start(); });
+  document.addEventListener("visibilitychange", () => (document.hidden ? pause() : start()));
+
+  let touchX = null;
+  slider.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (Math.abs(dx) > 50) go(current + (dx < 0 ? 1 : -1));
+  });
+
+  if (reduceMotion) slider.classList.add("is-paused");
+  show(0);
+  start();
+})();
+
 // Scroll-reveal animation
 (function () {
   const items = document.querySelectorAll(".reveal");

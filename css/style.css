@@ -191,8 +191,6 @@ button { font-family: inherit; cursor: pointer; }
 .btn-login { background: var(--primary); }
 .btn-login:hover { background: var(--primary-light); }
 .btn-login:active { background: var(--primary-dark); }
-/* Shortens to "LFI-PMS App" on narrower desktops so the header never wraps */
-@media (max-width: 1280px) { .btn-app-dl { display: none; } }
 .nav-toggle { display: none; background: none; border: none; color: var(--accent); }
 .nav-toggle svg { width: 26px; height: 26px; }
 
@@ -247,6 +245,59 @@ button { font-family: inherit; cursor: pointer; }
 .hero p.lead { margin-top: 1.5rem; color: rgba(255,255,255,0.75); max-width: 560px; font-size: 1.1rem; }
 .hero-actions { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 .hero .section-label { color: var(--secondary-light); }
+/* ---- Home hero slider: existing hero + Wedding Invitations + PMS App ---- */
+.hero-slider { display: block; }
+.hero-slides { display: grid; }
+.hero-slide {
+  grid-area: 1 / 1; position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
+  opacity: 0; visibility: hidden; transition: opacity 1.1s ease, visibility 0s linear 1.1s;
+}
+.hero-slide.is-active { opacity: 1; visibility: visible; transition: opacity 1.1s ease, visibility 0s; z-index: 1; }
+.hero-slide .hero-bg { transform: scale(1.08); transition: transform 8s ease-out; }
+.hero-slide.is-active .hero-bg { transform: scale(1); }
+.hero-slide .hero-content { width: 100%; padding-bottom: 11rem; }
+.hero-slide .hero-content > * { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.hero-slide.is-active .hero-content > * { opacity: 1; transform: none; }
+.hero-slide.is-active .hero-content > :nth-child(2) { transition-delay: 0.15s; }
+.hero-slide.is-active .hero-content > :nth-child(3) { transition-delay: 0.3s; }
+.hero-slide.is-active .hero-content > :nth-child(4) { transition-delay: 0.45s; }
+.hero .hero-title { font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.08; max-width: 900px; color: #ffffff; }
+.hero-slider .btn-outline-light { background: rgba(255,255,255,0.06); backdrop-filter: blur(4px); }
+.hero-slider .hero-actions .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.hero-controls {
+  position: absolute; left: 0; right: 0; bottom: 8.5rem; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between; pointer-events: none;
+}
+.hero-controls > * { pointer-events: auto; }
+.hero-dots { display: flex; gap: 0.5rem; }
+.hero-dot { background: none; border: 0; padding: 0.6rem 0; cursor: pointer; }
+.hero-dot span { display: block; width: 2.25rem; height: 3px; border-radius: 999px; background: rgba(255,255,255,0.3); overflow: hidden; position: relative; transition: width 0.4s ease; }
+.hero-dot.is-active span { width: 3.5rem; }
+.hero-dot span::after { content: ""; position: absolute; inset: 0; background: var(--secondary-light); transform: scaleX(0); transform-origin: left; }
+.hero-dot.is-active span::after { animation: heroProgress var(--hero-interval, 7s) linear forwards; }
+.hero-slider.is-paused .hero-dot.is-active span::after { animation-play-state: paused; }
+@keyframes heroProgress { to { transform: scaleX(1); } }
+.hero-arrows { display: flex; gap: 0.5rem; }
+.hero-arrow {
+  width: 2.75rem; height: 2.75rem; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; cursor: pointer;
+  backdrop-filter: blur(4px); transition: background 0.2s ease, border-color 0.2s ease;
+}
+.hero-arrow:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.45); }
+.hero-arrow svg { width: 18px; height: 18px; }
+.hero-dot:focus-visible, .hero-arrow:focus-visible { outline: 2px solid var(--secondary-light); outline-offset: 3px; }
+.hero-slider .scroll-cue { display: none; }
+@media (max-width: 768px) {
+  .hero-slide .hero-content { padding-top: 7rem; padding-bottom: 10rem; }
+  .hero-arrows { display: none; }
+  .hero-controls { bottom: 7.5rem; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-slide.is-active, .hero-slide .hero-bg, .hero-slide .hero-content > * { transition: none !important; transform: none !important; }
+  .hero-dot.is-active span::after { animation: none; transform: scaleX(1); }
+}
+
 .scroll-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   width: 24px; height: 40px; border: 2px solid rgba(255,255,255,0.35); border-radius: 999px;
