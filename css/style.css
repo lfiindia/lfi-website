@@ -334,12 +334,6 @@ body.dl-open { overflow: hidden; }
 
 /* Small page hero (non-home pages) */
 .page-hero { padding: 10rem 0 4rem; text-align: center; position: relative; overflow: hidden; }
-.page-hero:not(.with-image) { isolation: isolate; }
-.page-hero:not(.with-image)::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url("../assets/orange-bg.jpg") center / cover no-repeat;
-  -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent);
-}
 .page-hero:not(.with-image) h1 { text-shadow: 0 2px 18px rgba(255,255,255,0.9); }
 .page-hero:not(.with-image) p { color: var(--accent); }
 .page-hero h1 { color: var(--accent); }
