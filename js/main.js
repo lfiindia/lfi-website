@@ -256,8 +256,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // PMS App download popup - every link marked data-download opens it.
 // Without JS those links still go straight to the web-app install page.
 (function () {
-  // Put the Windows installer (.exe) link here when it is uploaded
-  const WINDOWS_DOWNLOAD_URL = "https://pms.lfiindia.in/download/PMS-App-Setup.exe";
+  // Windows installer, hosted as a GitHub release asset (direct download). New version = new release + update this URL
+  const WINDOWS_DOWNLOAD_URL = "https://github.com/lfiindia/lfi-website/releases/download/pms-app-v1.0.2/PmsApp-Setup-1.0.2.exe";
   const INSTALL_URL = "https://pms.lfiindia.in/install";
   const BROWSER_URL = "https://pms.lfiindia.in/";
 
