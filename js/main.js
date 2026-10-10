@@ -252,3 +252,67 @@ document.addEventListener("DOMContentLoaded", () => {
   setupForm("contact-form");
   setupForm("inquiry-form");
 });
+
+// PMS App download popup - every link marked data-download opens it.
+// Without JS those links still go straight to the web-app install page.
+(function () {
+  // Put the Windows installer (.exe) link here when it is uploaded
+  const WINDOWS_DOWNLOAD_URL = "https://pms.lfiindia.in/download/PMS-App-Setup.exe";
+  const INSTALL_URL = "https://pms.lfiindia.in/install";
+  const BROWSER_URL = "https://pms.lfiindia.in/";
+
+  const links = document.querySelectorAll("a[data-download]");
+  if (!links.length) return;
+
+  const isWindows = /Windows/i.test(navigator.userAgent);
+  const winIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.1 10.4 4v7.2H3zM11.3 3.9 21 2.5v8.7h-9.7zM3 12.1h7.4v7.2L3 18.2zM11.3 12.1H21v8.7l-9.7-1.4z"/></svg>';
+  const webIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3M12 7v7M9 11l3 3 3-3"/></svg>';
+
+  const modal = document.createElement("div");
+  modal.className = "dl-modal";
+  modal.hidden = true;
+  modal.innerHTML =
+    '<div class="dl-backdrop" data-dl-close></div>' +
+    '<div class="dl-dialog" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="dl-title">' +
+      '<button type="button" class="dl-close" aria-label="Close" data-dl-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+      '<div class="dl-head"><img src="assets/app-icon.png" alt="" class="dl-logo" /><div><h2 id="dl-title">Get PMS App</h2><p>by LINCON FILMS AND INFOWAY</p></div></div>' +
+      '<a class="dl-option dl-windows' + (isWindows ? "" : " is-disabled") + '" href="' + WINDOWS_DOWNLOAD_URL + '"' + (isWindows ? " download" : ' aria-disabled="true" tabindex="-1"') + '>' +
+        '<span class="dl-icon">' + winIcon + '</span>' +
+        '<span class="dl-text"><strong>Download for Windows</strong><small>' + (isWindows ? "PMS App Desktop &middot; Windows 10 / 11" : "PMS App Desktop is available for Windows only") + '</small></span>' +
+        '<span class="dl-badge">Windows only</span>' +
+      '</a>' +
+      '<a class="dl-option dl-web" href="' + INSTALL_URL + '">' +
+        '<span class="dl-icon">' + webIcon + '</span>' +
+        '<span class="dl-text"><strong>Install PMS Web App</strong><small>Android, iPhone, Mac &amp; Windows</small></span>' +
+      '</a>' +
+      '<a class="dl-continue" href="' + BROWSER_URL + '">or continue in browser &rarr;</a>' +
+    '</div>';
+  document.body.appendChild(modal);
+
+  const dialog = modal.querySelector(".dl-dialog");
+  let lastFocus = null;
+
+  function open(e) {
+    e.preventDefault();
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add("dl-open");
+    requestAnimationFrame(() => modal.classList.add("is-open"));
+    (modal.querySelector(".dl-option:not(.is-disabled)") || dialog).focus();
+  }
+  function close() {
+    modal.classList.remove("is-open");
+    document.body.classList.remove("dl-open");
+    modal.hidden = true;
+    if (lastFocus) lastFocus.focus();
+  }
+
+  links.forEach((a) => a.addEventListener("click", open));
+  modal.addEventListener("click", (e) => {
+    if (e.target.closest("[data-dl-close]")) close();
+    if (e.target.closest(".dl-option.is-disabled")) e.preventDefault();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (!modal.hidden && e.key === "Escape") close();
+  });
+})();
