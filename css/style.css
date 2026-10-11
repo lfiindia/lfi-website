@@ -496,7 +496,7 @@ footer { background: var(--tertiary-dark); border-top: 3px solid var(--primary-l
 }
 .ssl-badge {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  background: var(--primary); color: #ffffff; font-size: 0.72rem; font-weight: 700;
+  background: #1f7a4d; /* green = secure */ color: #ffffff; font-size: 0.72rem; font-weight: 700;
   border-radius: 999px; padding: 0.55rem 0.9rem; width: fit-content;
   box-shadow: 0 10px 24px -10px rgba(0,0,0,0.35);
   white-space: nowrap;
