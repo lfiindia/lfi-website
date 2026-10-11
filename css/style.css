@@ -962,25 +962,15 @@ footer { background: var(--tertiary-dark); border-top: 3px solid var(--primary-l
 @media (max-width: 960px) { .product-banner { grid-template-columns: 1fr; padding: 3rem 2rem; gap: 2.5rem; } }
 @media (max-width: 480px) { .product-banner { padding: 2.5rem 1.25rem; } .product-actions .btn { width: 100%; } }
 
-/* ============ Footer — PMS App Desktop (Windows) download card ============ */
-.footer-app {
-  display: flex; align-items: center; gap: 1.5rem; margin-top: 3.5rem; padding: 1.5rem 1.75rem;
-  border-radius: 1.25rem; color: #ffffff;
-  background: linear-gradient(120deg, rgba(184,103,43,0.22) 0%, rgba(255,255,255,0.04) 60%);
-  border: 1px solid rgba(255,169,77,0.3);
-  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+/* Footer — small PMS App Desktop badge under MSME (direct Windows download) */
+.pms-badge {
+  display: flex; align-items: center; gap: 0.65rem; width: fit-content;
+  background: #ffffff; border-radius: 0.85rem; padding: 0.5rem 0.9rem 0.5rem 0.55rem;
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,0.35); transition: transform 0.2s ease;
 }
-.footer-app:hover { border-color: rgba(255,169,77,0.65); transform: translateY(-2px); }
-.footer-app:hover .footer-app-btn { background: linear-gradient(135deg, #c8742f 0%, var(--primary-light) 60%, var(--primary) 100%); }
-.footer-app:focus-visible { outline: 2px solid var(--secondary-light); outline-offset: 3px; }
-.footer-app-icon { width: 64px; height: 64px; border-radius: 22%; flex-shrink: 0; box-shadow: 0 10px 22px -10px rgba(0,0,0,0.6); }
-.footer-app-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem; }
-.footer-app-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--secondary-light); }
-.footer-app-text strong { font-size: 1.1rem; font-weight: 700; color: #ffffff; }
-.footer-app-text > span:last-child { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
-.footer-app-btn { flex-shrink: 0; }
-.footer-app-btn svg { width: 18px; height: 18px; }
-@media (max-width: 760px) {
-  .footer-app { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.4rem 1.25rem; }
-  .footer-app-btn { width: 100%; }
-}
+.pms-badge:hover { transform: translateY(-2px); }
+.pms-badge img { width: 36px; height: 36px; border-radius: 22%; flex-shrink: 0; }
+.pms-badge span { font-size: 0.7rem; font-weight: 700; color: #1a1a1a; line-height: 1.3; }
+.pms-badge span small { font-weight: 500; color: var(--primary); font-size: 0.62rem; }
+.trust-badges .badge-break { flex-basis: 100%; height: 0; }
+.trust-badges .badge-break ~ * { margin-top: -0.75rem; } /* cancel the extra row gap the zero-height break adds */
