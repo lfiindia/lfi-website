@@ -261,6 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const INSTALL_URL = "https://pms.lfiindia.in/install";
   const BROWSER_URL = "https://pms.lfiindia.in/";
 
+  // Keep every direct Windows download link (e.g. the footer card) on the current installer
+  document.querySelectorAll("a[data-windows-download]").forEach((a) => { a.href = WINDOWS_DOWNLOAD_URL; });
+
   const links = document.querySelectorAll("a[data-download]");
   if (!links.length) return;
 
@@ -275,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
     '<div class="dl-backdrop" data-dl-close></div>' +
     '<div class="dl-dialog" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="dl-title">' +
       '<button type="button" class="dl-close" aria-label="Close" data-dl-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
-      '<div class="dl-head"><img src="assets/app-icon.png" alt="" class="dl-logo" /><div><h2 id="dl-title">Get PMS App</h2><p>by LINCON FILMS AND INFOWAY</p></div></div>' +
+      '<div class="dl-head"><img src="assets/app-icon.png?v=3" alt="" class="dl-logo" /><div><h2 id="dl-title">Get PMS App</h2><p>by LINCON FILMS AND INFOWAY</p></div></div>' +
       '<a class="dl-option dl-windows' + (isWindows ? "" : " is-disabled") + '" href="' + WINDOWS_DOWNLOAD_URL + '"' + (isWindows ? " download" : ' aria-disabled="true" tabindex="-1"') + '>' +
         '<span class="dl-icon">' + winIcon + '</span>' +
         '<span class="dl-text"><strong>Download for Windows</strong><small>' + (isWindows ? "PMS App Desktop &middot; Windows 10 / 11" : "PMS App Desktop is available for Windows only") + '</small></span>' +
