@@ -61,3 +61,20 @@ then open http://localhost:8000
 
 This is 100% static — upload the whole folder to `public_html` via FTP or
 Hostinger's File Manager and it works with zero configuration.
+
+## Releasing a new PMS App Desktop (Windows) version
+
+Every "Download for Windows" button (download popup + footer badge) points to
+`https://github.com/lfiindia/lfi-website/releases/latest/download/PmsApp-Setup.exe`,
+which GitHub always serves from the **latest** release. To ship a new version
+no website change is needed:
+
+1. Go to <https://github.com/lfiindia/lfi-website/releases/new>.
+2. Tag: `pms-app-vX.Y.Z` (e.g. `pms-app-v1.0.3`), title `PMS App Desktop X.Y.Z (Windows)`.
+3. Attach the installer and make sure the file is named exactly **`PmsApp-Setup.exe`**
+   (you may also attach a versioned copy such as `PmsApp-Setup-1.0.3.exe` for reference).
+4. Leave "Set as a pre-release" unticked and keep "Set as the latest release" ticked, then **Publish**.
+
+The buttons start serving the new installer immediately. Only PMS App
+installers should be published as releases in this repo, because the
+link always follows whichever release is marked "latest".
