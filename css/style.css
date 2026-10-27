@@ -189,41 +189,6 @@ button { font-family: inherit; cursor: pointer; }
 .btn-app:hover { background: #c47635; }
 .btn-app:active { background: #9c5523; }
 
-/* PMS App download popup (built by js/main.js) */
-body.dl-open { overflow: hidden; }
-.dl-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-.dl-modal[hidden] { display: none; }
-.dl-backdrop { position: absolute; inset: 0; background: rgba(23,17,14,0.6); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.2s ease; }
-.dl-dialog { position: relative; width: 100%; max-width: 440px; background: #ffffff; border-radius: 1rem; padding: 2rem 1.75rem 1.5rem; box-shadow: 0 30px 60px -15px rgba(23,17,14,0.45); opacity: 0; transform: translateY(12px) scale(0.98); transition: opacity 0.2s ease, transform 0.2s ease; }
-.dl-modal.is-open .dl-backdrop, .dl-modal.is-open .dl-dialog { opacity: 1; transform: none; }
-.dl-close { position: absolute; top: 0.9rem; right: 0.9rem; width: 36px; height: 36px; display: grid; place-items: center; border: none; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
-.dl-close:hover { background: var(--surface-2); color: var(--accent); }
-.dl-close svg { width: 20px; height: 20px; }
-.dl-head { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.5rem; }
-.dl-logo { width: 52px; height: 52px; border-radius: 22%; box-shadow: 0 6px 14px -6px rgba(168,90,34,0.6); }
-.dl-head h2 { font-size: 1.35rem; color: var(--accent); margin: 0; }
-.dl-head p { margin: 0.15rem 0 0; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.dl-option { display: flex; align-items: center; gap: 0.9rem; padding: 1rem 1.1rem; border-radius: 0.75rem; margin-bottom: 0.75rem; border: 1.5px solid transparent; transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
-.dl-option:hover { transform: translateY(-1px); }
-.dl-icon { flex-shrink: 0; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 0.6rem; }
-.dl-icon svg { width: 22px; height: 22px; }
-.dl-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.dl-text strong { font-size: 1rem; }
-.dl-text small { font-size: 0.8rem; opacity: 0.85; }
-.dl-windows { background: linear-gradient(135deg, var(--primary-light), var(--primary-dark)); color: #ffffff; box-shadow: 0 12px 24px -12px rgba(168,90,34,0.7); }
-.dl-windows:hover { background: linear-gradient(135deg, #c8742f, var(--primary)); }
-.dl-windows .dl-icon { background: rgba(255,255,255,0.15); }
-.dl-windows.is-disabled { background: var(--surface-2); box-shadow: none; color: var(--muted); cursor: not-allowed; transform: none; }
-.dl-windows.is-disabled .dl-icon { background: #ecdccd; }
-.dl-badge { flex-shrink: 0; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.3rem 0.55rem; border-radius: 999px; background: rgba(255,255,255,0.18); }
-.dl-windows.is-disabled .dl-badge { background: #ecdccd; }
-.dl-web { background: #ffffff; color: var(--accent); border-color: var(--border); }
-.dl-web:hover { border-color: var(--secondary); }
-.dl-web .dl-icon { background: #b8672b; color: #ffffff; }
-.dl-continue { display: block; text-align: center; padding: 0.6rem; font-size: 0.9rem; font-weight: 500; color: var(--muted); }
-.dl-continue:hover { color: var(--primary); text-decoration: underline; }
-@media (max-width: 420px) { .dl-dialog { padding: 1.75rem 1.1rem 1.25rem; } .dl-badge { display: none; } }
-@media (prefers-reduced-motion: reduce) { .dl-backdrop, .dl-dialog, .dl-option { transition: none; } }
 .nav-toggle { display: none; background: none; border: none; color: var(--accent); }
 .nav-toggle svg { width: 26px; height: 26px; }
 
