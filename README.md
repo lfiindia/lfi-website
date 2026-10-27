@@ -12,6 +12,7 @@ lfi-static/
 ├── portfolio.html           Filterable project gallery
 ├── services.html            Full service catalogue
 ├── contact.html             Contact form + map
+├── login.html                No auth — redirects to dashboard.lfiindia.in/login
 ├── privacy-policy.html
 ├── terms.html
 ├── 404.html
